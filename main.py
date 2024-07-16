@@ -1,5 +1,13 @@
 from flask import Flask, request, jsonify
 import os
+from logtail import LogtailHandler
+import logging
+
+handler = LogtailHandler(source_token="thotTjgPgtkWPNVQS9vrcmem")
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.handlers = []
+logger.addHandler(handler)
 
 app = Flask(__name__)
 
@@ -10,32 +18,32 @@ def index():
 @app.route('/log', methods=['POST'])
 def log_request():
     method = request.method
-    print(f"Request Method: {method}")
+    logger.info(f"Request Method: {method}")
     
     headers = request.headers
-    print("Request Headers:")
+    logger.info("Request Headers:")
     for header, value in headers.items():
-        print(f"{header}: {value}")
+        logger.info(f"{header}: {value}")
 
     url = request.url
-    print(f"Request URL: {url}")
+    logger.info(f"Request URL: {url}")
 
     args = request.args
-    print("Query Parameters:")
+    logger.info("Query Parameters:")
     for arg, value in args.items():
-        print(f"{arg}: {value}")
+        logger.info(f"{arg}: {value}")
 
     if request.method in ['POST', 'PUT']:
         form_data = request.form
-        print("Form Data:")
+        logger.info("Form Data:")
         for key, value in form_data.items():
-            print(f"{key}: {value}")
+            logger.info(f"{key}: {value}")
 
     body = request.get_data()
-    print(f"Request Body: {body}")
+    logger.info(f"Request Body: {body}")
 
     size_in_bytes = len(body)
-    print(f"Request Size: {size_in_bytes} bytes")
+    logger.info(f"Request Size: {size_in_bytes} bytes")
 
     return jsonify({"message": "Request logged successfully!"})
 
