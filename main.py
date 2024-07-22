@@ -15,6 +15,11 @@ app = Flask(__name__)
 def index():
     return jsonify({"Message": "Working"})
 
+@app.route('/delayed-response')
+def delayed_response():
+    time.sleep(300)  # Sleep for 5 minutes
+    return 'Response after 5 minutes'
+
 @app.route('/log', methods=['POST'])
 def log_request():
     method = request.method
