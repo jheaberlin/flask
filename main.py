@@ -1,12 +1,13 @@
 from flask import Flask, request, jsonify
 import os
+import time
 from logtail import LogtailHandler
 import logging
 
+# Configure logging
 handler = LogtailHandler(source_token="thotTjgPgtkWPNVQS9vrcmem")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-logger.handlers = []
 logger.addHandler(handler)
 
 app = Flask(__name__)
