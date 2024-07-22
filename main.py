@@ -18,7 +18,7 @@ def index():
 
 @app.route('/delayed-response')
 def delayed_response():
-    time.sleep(60)  # Sleep for 5 minutes
+    time.sleep(300)  # Sleep for 5 minutes
     return jsonify({"message": "data"})
     
 @app.route('/log', methods=['POST'])
