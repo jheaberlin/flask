@@ -2,12 +2,6 @@ from flask import Flask, request, jsonify
 import random
 import string
 
-# Configure logging
-handler = LogtailHandler(source_token="thotTjgPgtkWPNVQS9vrcmem")
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-logger.addHandler(handler)
-
 app = Flask(__name__)
 
 keys = [f"key_{i}" for i in range(1, 301)]
