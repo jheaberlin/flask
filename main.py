@@ -8,7 +8,7 @@ keys = [f"key_{i}" for i in range(1, 301)]
 
 def generate_random_value():
     """Generate a random value consisting of alphanumeric characters."""
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=1000))
 
 def generate_object():
     """Generate a single object with 300 key-value pairs."""
